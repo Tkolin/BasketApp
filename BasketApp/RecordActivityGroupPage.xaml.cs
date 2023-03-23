@@ -16,13 +16,18 @@ using System.Windows.Shapes;
 namespace BasketApp
 {
     /// <summary>
-    /// Логика взаимодействия для CoachPage.xaml
+    /// Логика взаимодействия для RecordActivityGroupPage.xaml
     /// </summary>
-    public partial class CoachPage : Page
+    public partial class RecordActivityGroupPage : Page
     {
-        public CoachPage()
+        public RecordActivityGroupPage()
         {
             InitializeComponent();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -30,27 +35,7 @@ namespace BasketApp
 
         }
 
-        private void btnDel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnEdit_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void tBoxSearchCoach_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void btnReset_Click(object sender, RoutedEventArgs e)
+        private void btnSave_Click_1(object sender, RoutedEventArgs e)
         {
 
         }

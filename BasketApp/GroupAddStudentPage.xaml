@@ -1,4 +1,4 @@
-﻿<Page x:Class="BasketApp.StudentManagementPage"
+﻿<Page x:Class="BasketApp.GroupAddStudentPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,24 +6,21 @@
       xmlns:local="clr-namespace:BasketApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StudentManagementPage" Loaded="Page_Loaded">
+      Title="GroupAddStudentPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Редактирование/добавление студента" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
+        <TextBlock Text="Добавить студента в группу: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
             <TextBlock Margin="10,0,0,0">Фамилия:</TextBlock>
-            <TextBox Margin="0,0,0,5" x:Name="tBoxLastName"/>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxLastName"/>
             <TextBlock Margin="10,0,0,0">Имя:</TextBlock>
-            <TextBox Margin="0,0,0,5" x:Name="tBoxFirstName"/>
+            <TextBox Margin="0,0,50,5" x:Name="tBoxFirstName" IsEnabled="False"/>
             <TextBlock Margin="10,0,0,0">Отчество:</TextBlock>
-            <TextBox Margin="0,0,0,5" x:Name="tBoxPatronymic"/>
-            <TextBlock Margin="10,0,0,0">Дата рождения:</TextBlock>
-            <DatePicker Margin="0,0,0,5" x:Name="dPickBirth"/>
-            <TextBlock Margin="10,0,0,0">Группа:</TextBlock>
-            <ComboBox Margin="0,0,0,5" x:Name="cBoxGroup"/>
-            <TextBlock Margin="10,0,0,0">Логин учётной записи:</TextBlock>
-            <ComboBox Margin="0,0,0,25" x:Name="cBoxAccaunt"/>
+            <TextBox Margin="0,0,50,5" x:Name="tBoxPatronymic" IsEnabled="False"/>
+            <TextBlock Margin="10,0,0,0">Учётная запись:</TextBlock>
+            <TextBox Margin="0,0,50,25" x:Name="tBoxAccount" IsEnabled="False"/>
+
             <Button   Margin="3" x:Name="btnBack" Click="btnBack_Click">Отмена</Button>
             <Button   Margin="3" x:Name="btnSave" Click="btnSave_Click">Сохранить</Button>
         </StackPanel>

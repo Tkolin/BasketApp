@@ -6,9 +6,28 @@
       xmlns:local="clr-namespace:BasketApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GroupManagementPage">
+      Title="GroupManagementPage" Loaded="Page_Loaded">
 
     <Grid>
-        
+        <TextBlock Text="Редактирование/добавление группы" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
+
+            <TextBlock Margin="10,0,0,0">Название:</TextBlock>
+            <TextBox Margin="0,0,0,5" x:Name="tBoxName"/>
+            <TextBlock Margin="10,0,0,0">Тренер:</TextBlock>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxCoach"/>
+            <TextBlock Margin="10,0,0,0">Список студентов:</TextBlock>
+            <DataGrid  Height="150" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="0.5*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="1*"/>
+                    <DataGridTextColumn Header="Логин" Binding="{Binding Lastname}" Width="0.7*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button  x:Name="btnAddStudForGroup" Margin="3,3,3,25" Click="btnAddStudForGroup_Click">Добавить студента</Button>
+            <Button   Margin="3" x:Name="btnBack" Click="btnBack_Click">Отмена</Button>
+            <Button   Margin="3" x:Name="btnSave" Click="btnSave_Click">Сохранить</Button>
+        </StackPanel>
+
     </Grid>
 </Page>

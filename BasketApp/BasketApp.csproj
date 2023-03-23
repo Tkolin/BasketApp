@@ -79,6 +79,9 @@
     <Compile Include="Group.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="GroupAddStudentPage.xaml.cs">
+      <DependentUpon>GroupAddStudentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GroupManagementPage.xaml.cs">
       <DependentUpon>GroupManagementPage.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="Record.cs">
       <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecordActivityGroupPage.xaml.cs">
+      <DependentUpon>RecordActivityGroupPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RecordManagementPage.xaml.cs">
       <DependentUpon>RecordManagementPage.xaml</DependentUpon>
@@ -128,6 +134,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GroupAddStudentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GroupManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -155,6 +165,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RecordActivityGroupPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RecordManagementPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

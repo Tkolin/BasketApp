@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BasketApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoginPage">
+      Title="LoginPage" Loaded="Page_Loaded">
 
     <Grid>
         <TextBlock Text="Авторизация" HorizontalAlignment="Center" FontSize="36" FontWeight="Bold" Margin="0,0,0,50"/>
@@ -15,8 +15,8 @@
             <TextBox x:Name="TBoxLogin"  Margin="0,0,0,10"/>
             <TextBlock  Text="Пароль:" Margin="10,0,0,0"/>
             <TextBox x:Name="TBoxPassword"  Margin="0,0,0,10"/>
-            <Button Content="Авторизация" x:Name="nextBtn" Click="nextBtn_Click"  Width="100"/>
-            <Button Content="Назад" x:Name="backBtn" Click="exitBtn_Click"  Width="100"/>
+            <Button Content="Авторизация" x:Name="btnAuth" Click="btnAuth_Click"  Width="100"/>
+            <Button Content="Назад" x:Name="backBtn" Click="backBtn_Click"  Width="100"/>
         </StackPanel>
 
     </Grid>

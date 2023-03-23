@@ -6,21 +6,21 @@
       xmlns:local="clr-namespace:BasketApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="RecordPage">
+      Title="RecordPage" Loaded="Page_Loaded">
 
 
     <Grid>
-        <TextBlock Text="Достижения: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,6" x:Name="tBlockStudentName"/>
+        <TextBlock Text="Занятия: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"  x:Name="tBlockStudentName" FontStyle="Italic"/>
         <StackPanel Orientation="Vertical" Margin="26,60,26,26">
             <StackPanel Orientation="Horizontal">
-                <Button  Margin="5" x:Name="btnBack" Click="">Назад</Button>
-                <TextBlock  VerticalAlignment="Center">ФИО студента:</TextBlock>
-                <TextBox Margin="5" Width="140" x:Name="tBoxSearchStud" TextChanged=""/>
-                <TextBlock  VerticalAlignment="Center">ФИО тренера:</TextBlock>
-                <TextBox Margin="5" Width="140" x:Name="tBoxSearchCoach" TextChanged=""/>
-                <TextBlock  VerticalAlignment="Center">Группа:</TextBlock>
-                <ComboBox Width="100" x:Name="cBoxGroup" Margin="5"/>
-                <Button  Margin="5" x:Name="btnReset" Click="">Сбросить</Button>
+                <Button  Margin="5" x:Name="btnBack" Click="btnBack_Click">Назад</Button>
+                <TextBlock  VerticalAlignment="Center">Период от:</TextBlock>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0" x:Name="dPickDateStart"/>
+                <TextBlock  VerticalAlignment="Center">до:</TextBlock>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  x:Name="dPickDateEnd" />
+                <TextBlock  VerticalAlignment="Center">Название:</TextBlock>
+                <TextBox Width="200" x:Name="tBoxName" Margin="5"/>
+                <Button  Margin="5" x:Name="btnReset" Click="btnReset_Click">Сбросить</Button>
             </StackPanel>
 
             <DataGrid  Height="230" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True">
@@ -37,9 +37,11 @@
             </DataGrid>
             <StackPanel  Orientation="Horizontal">
 
-                <Button Margin="4" x:Name="btnDel" Click="">Удалить</Button>
-                <Button Margin="4" x:Name="btnAdd" Click="">Добавить</Button>
-                <Button Margin="4" x:Name="btnEdit" Click="">Редактировать</Button>
+                <Button Margin="4" x:Name="btnDel" Click="btnDel_Click">Удалить</Button>
+                <Button Margin="4" x:Name="btnAdd" Click="btnAdd_Click">Добавить</Button>
+                <Button Margin="4,4,50,4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
+                <TextBlock  VerticalAlignment="Center">Пресутствие:</TextBlock>
+                <ComboBox Margin="5" Width="140" x:Name="cBoxPresenc"  />
             </StackPanel>
         </StackPanel>
     </Grid>

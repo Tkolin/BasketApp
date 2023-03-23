@@ -24,5 +24,25 @@ namespace BasketApp
         {
             InitializeComponent();
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddStudForGroup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

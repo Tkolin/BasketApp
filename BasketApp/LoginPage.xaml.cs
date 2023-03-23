@@ -24,5 +24,25 @@ namespace BasketApp
         {
             InitializeComponent();
         }
+
+        private void backBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void nextBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAuth_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -16,21 +16,26 @@ using System.Windows.Shapes;
 namespace BasketApp
 {
     /// <summary>
-    /// Логика взаимодействия для GroupManagementPage.xaml
+    /// Логика взаимодействия для GroupAddStudentPage.xaml
     /// </summary>
-    public partial class GroupManagementPage : Page
+    public partial class GroupAddStudentPage : Page
     {
-        public GroupManagementPage()
+        public GroupAddStudentPage()
         {
             InitializeComponent();
         }
 
-        private void btnAddStudForGroup_Click(object sender, RoutedEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
         }

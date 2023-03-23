@@ -6,19 +6,19 @@
       xmlns:local="clr-namespace:BasketApp"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="GroupPage">
+      Title="GroupPage" Loaded="Page_Loaded">
 
 
     <Grid>
-        <TextBlock Text="Просмотр списка групп" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,6" FontStyle="Italic"/>
+        <TextBlock Text="Просмотр списка групп" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic"/>
         <StackPanel Orientation="Vertical" Margin="26,60,26,26">
             <StackPanel Orientation="Horizontal">
-                <Button  Margin="5" x:Name="btnBack" Click="">Назад</Button>
+                <Button  Margin="5" x:Name="btnBack" Click="btnBack_Click">Назад</Button>
                 <TextBlock  VerticalAlignment="Center">Название:</TextBlock>
                 <ComboBox Margin="5" Width="140" x:Name="tBoxSearchStud"  />
                 <TextBlock  VerticalAlignment="Center">Тренер:</TextBlock>
                 <ComboBox Margin="5" Width="140" x:Name="tBoxSearchCoach" />
-                <Button  Margin="5" x:Name="btnReset" Click="">Сбросить</Button>
+                <Button  Margin="5" x:Name="btnReset" Click="btnReset_Click">Сбросить</Button>
             </StackPanel>
 
             <DataGrid  Height="230" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True">
@@ -35,9 +35,10 @@
             </DataGrid>
             <StackPanel  Orientation="Horizontal">
 
-                <Button Margin="4" x:Name="btnDel" Click="">Удалить</Button>
-                <Button Margin="4" x:Name="btnAdd" Click="">Добавить</Button>
-                <Button Margin="4" x:Name="btnEdit" Click="">Редактировать</Button>
+                <Button Margin="4" x:Name="btnDel" Click="btnDel_Click">Удалить</Button>
+                <Button Margin="4" x:Name="btnAdd" Click="btnAdd_Click">Добавить</Button>
+                <Button Margin="4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
+                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Редактировать</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
