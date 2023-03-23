@@ -12,17 +12,18 @@ namespace BasketApp
     using System;
     using System.Collections.Generic;
     
-    public partial class Record
+    public partial class Presence
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Presence()
+        {
+            this.Record = new HashSet<Record>();
+        }
+    
         public int ID { get; set; }
-        public Nullable<int> StudentID { get; set; }
-        public Nullable<int> Assessment { get; set; }
-        public Nullable<System.DateTime> DateStart { get; set; }
-        public Nullable<System.DateTime> DateEnd { get; set; }
-        public Nullable<int> PresenceID { get; set; }
         public string Name { get; set; }
     
-        public virtual Presence Presence { get; set; }
-        public virtual Student Student { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Record> Record { get; set; }
     }
 }

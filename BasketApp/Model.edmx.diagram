@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4fa5be2b936048e88d25ac9d73843d06" Name="Diagram1">
+      <Diagram DiagramId="c8b185f3ce6a49c89330ec286848ed3f" Name="Diagram1">
         <EntityTypeShape EntityType="BasketBDModel.Coach" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BasketBDModel.Grade" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="BasketBDModel.Group" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BasketBDModel.Position" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BasketBDModel.Record" Width="1.5" PointX="12" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BasketBDModel.Presence" Width="1.5" PointX="9.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BasketBDModel.Record" Width="1.5" PointX="12" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BasketBDModel.Role" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="BasketBDModel.Student" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="BasketBDModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
@@ -18,6 +19,7 @@
         <AssociationConnector Association="BasketBDModel.FK_Coach_User" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_Group_Coach" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_Student_Group" ManuallyRouted="false" />
+        <AssociationConnector Association="BasketBDModel.FK_Record_Presence" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_Record_Student" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_User_Role1" ManuallyRouted="false" />

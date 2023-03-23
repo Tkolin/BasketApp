@@ -35,6 +35,7 @@ namespace BasketApp
         public virtual DbSet<Grade> Grade { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Position> Position { get; set; }
+        public virtual DbSet<Presence> Presence { get; set; }
         public virtual DbSet<Record> Record { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<Student> Student { get; set; }

@@ -30,10 +30,7 @@ namespace BasketApp
 
         }
 
-        private void nextBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {

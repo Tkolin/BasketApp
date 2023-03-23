@@ -38,6 +38,13 @@
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Presence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Record">
           <Key>
             <PropertyRef Name="ID" />
@@ -47,7 +54,8 @@
           <Property Name="Assessment" Type="int" />
           <Property Name="DateStart" Type="datetime" />
           <Property Name="DateEnd" Type="datetime" />
-          <Property Name="Presence" Type="bit" />
+          <Property Name="PresenceID" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -123,6 +131,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Record_Presence">
+          <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presence">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="PresenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Record_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="Record" Type="Self.Record" Multiplicity="*" />
@@ -188,6 +208,7 @@
           <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Presence" EntityType="Self.Presence" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
@@ -204,6 +225,10 @@
           <AssociationSet Name="FK_Group_Coach" Association="Self.FK_Group_Coach">
             <End Role="Coach" EntitySet="Coach" />
             <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Record_Presence" Association="Self.FK_Record_Presence">
+            <End Role="Presence" EntitySet="Presence" />
+            <End Role="Record" EntitySet="Record" />
           </AssociationSet>
           <AssociationSet Name="FK_Record_Student" Association="Self.FK_Record_Student">
             <End Role="Student" EntitySet="Student" />
@@ -270,6 +295,14 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Coach" Relationship="Self.FK_Coach_Position" FromRole="Position" ToRole="Coach" />
         </EntityType>
+        <EntityType Name="Presence">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Record" Relationship="Self.FK_Record_Presence" FromRole="Presence" ToRole="Record" />
+        </EntityType>
         <EntityType Name="Record">
           <Key>
             <PropertyRef Name="ID" />
@@ -279,7 +312,9 @@
           <Property Name="Assessment" Type="Int32" />
           <Property Name="DateStart" Type="DateTime" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Precision="3" />
-          <Property Name="Presence" Type="Boolean" />
+          <Property Name="PresenceID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Presence" Relationship="Self.FK_Record_Presence" FromRole="Record" ToRole="Presence" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Record_Student" FromRole="Record" ToRole="Student" />
         </EntityType>
         <EntityType Name="Role">
@@ -377,6 +412,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Record_Presence">
+          <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
+          <End Role="Record" Type="Self.Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Presence">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="PresenceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Record_Student">
           <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
           <End Role="Record" Type="Self.Record" Multiplicity="*" />
@@ -430,6 +477,7 @@
           <EntitySet Name="Grade" EntityType="Self.Grade" />
           <EntitySet Name="Group" EntityType="Self.Group" />
           <EntitySet Name="Position" EntityType="Self.Position" />
+          <EntitySet Name="Presence" EntityType="Self.Presence" />
           <EntitySet Name="Record" EntityType="Self.Record" />
           <EntitySet Name="Role" EntityType="Self.Role" />
           <EntitySet Name="Student" EntityType="Self.Student" />
@@ -450,6 +498,10 @@
           <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
             <End Role="Group" EntitySet="Group" />
             <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Record_Presence" Association="Self.FK_Record_Presence">
+            <End Role="Presence" EntitySet="Presence" />
+            <End Role="Record" EntitySet="Record" />
           </AssociationSet>
           <AssociationSet Name="FK_Record_Student" Association="Self.FK_Record_Student">
             <End Role="Student" EntitySet="Student" />
@@ -511,6 +563,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Presence">
+            <EntityTypeMapping TypeName="BasketBDModel.Presence">
+              <MappingFragment StoreEntitySet="Presence">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Record">
             <EntityTypeMapping TypeName="BasketBDModel.Record">
               <MappingFragment StoreEntitySet="Record">
@@ -519,7 +579,8 @@
                 <ScalarProperty Name="Assessment" ColumnName="Assessment" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
-                <ScalarProperty Name="Presence" ColumnName="Presence" />
+                <ScalarProperty Name="PresenceID" ColumnName="PresenceID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
