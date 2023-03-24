@@ -73,7 +73,7 @@ namespace BasketApp
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message.ToString());
+                MessageBox.Show(ex.Message.ToString(),"Конфликт записей!");
             }
 
             dataGrid.ItemsSource = getGroup();
@@ -115,6 +115,14 @@ namespace BasketApp
         private void cBoxCoach_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             dataGrid.ItemsSource = getGroup();
+        }
+
+        private void btnGoToRecordPage_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem == null)
+                return;
+
+            NavigationService.Navigate(new RecordPage(((Group)dataGrid.SelectedValue)));
         }
     }
 }

@@ -73,20 +73,19 @@ namespace BasketApp
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, "Ошибка добавления");
                 }
             }
             try
             {
                 BasketBDEntities.GetContext().SaveChanges();
+                NavigationService.GoBack();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, "Ошибка сохранения");
             }
 
         }
-
-
     }
 }

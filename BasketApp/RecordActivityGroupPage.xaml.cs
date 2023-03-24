@@ -21,34 +21,63 @@ namespace BasketApp
     public partial class RecordActivityGroupPage : Page
     {
         Group group;
+        bool edit;
         public RecordActivityGroupPage()
         {
             InitializeComponent();
             this.group = new Group();
+            edit = false;
         }
         public RecordActivityGroupPage(Group group)
         {
             InitializeComponent();
             this.group = group;
+            edit = true;
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (dPickEnd.SelectedDate == null || dPickStart.SelectedDate == null ||
+               cBoxGroup.SelectedItem == null || tBoxName.Text.Length < 0)
+                return;
 
+
+            foreach(Student student in BasketBDEntities.GetContext().Student
+                .Where(r=>r.GroupID == group.ID))
+            {
+                Record record = new Record();
+
+                record.Name = tBoxName.Text;
+                record.DateEnd = dPickEnd.SelectedDate;
+                record.DateStart = dPickStart.SelectedDate;
+                record.StudentID = student.ID;
+                try
+                {
+                    BasketBDEntities.GetContext().Record.Add(record);
+                    BasketBDEntities.GetContext().SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка задания у " + student.FirstName + " " + student.LastName);
+                }
+
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void btnSave_Click_1(object sender, RoutedEventArgs e)
-        {
-
+            NavigationService.GoBack();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            cBoxGroup.DisplayMemberPath = "Name";
+            cBoxGroup.SelectedValuePath = "ID";
+            cBoxGroup.ItemsSource = BasketBDEntities.GetContext().Group.ToList();
+        
+            if (edit)
+            {
+                cBoxGroup.SelectedItem = group;
+            }
         }
     }
 }

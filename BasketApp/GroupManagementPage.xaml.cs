@@ -95,6 +95,7 @@ namespace BasketApp
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+            edit = true;
             return true;
         }
     }

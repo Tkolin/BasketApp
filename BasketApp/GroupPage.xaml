@@ -33,6 +33,8 @@
                 <Button Margin="4" x:Name="btnDel" Click="btnDel_Click">Удалить</Button>
                 <Button Margin="4" x:Name="btnAdd" Click="btnAdd_Click">Добавить</Button>
                 <Button Margin="4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
+                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Задать задание группе</Button>
+                <Button Margin="4" x:Name="btnGoToRecordPage" Click="btnGoToRecordPage_Click">Успеваемость группы</Button>
 
             </StackPanel>
         </StackPanel>

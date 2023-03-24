@@ -21,29 +21,79 @@ namespace BasketApp
     public partial class StudentManagementPage : Page
     {
         Student student;
+        bool edit;
         public StudentManagementPage()
         {
             InitializeComponent();
             this.student = new Student();
+            edit = false;
         }
         public StudentManagementPage(Student student)
         {
             InitializeComponent();
             this.student = student;
+            edit = true;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            cBoxAccaunt.DisplayMemberPath = "Login";
+            cBoxAccaunt.SelectedValuePath = "ID";
+            cBoxAccaunt.ItemsSource = BasketBDEntities.GetContext().User.ToList();
 
+            cBoxGroup.DisplayMemberPath = "Name";
+            cBoxGroup.SelectedValuePath = "ID";
+            cBoxGroup.ItemsSource = BasketBDEntities.GetContext().Group.ToList();
+
+            if (edit)
+            {
+                tBoxFirstName.Text = student.FirstName;
+                tBoxLastName.Text = student.LastName;
+                tBoxPatronymic.Text = student.Patronimic;
+                dPickBirth.SelectedDate = student.DateBirth;
+                cBoxAccaunt.SelectedItem = student.User;
+                cBoxGroup.SelectedItem = student.Group;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (tBoxFirstName.Text.Length < 0 || tBoxLastName.Text.Length < 0 ||
+                dPickBirth.SelectedDate == null)
 
+
+            student.FirstName =tBoxFirstName.Text;
+            student.LastName  =tBoxLastName.Text;
+             student.Patronimic= tBoxPatronymic.Text;
+             student.DateBirth =dPickBirth.SelectedDate;
+             student.User =cBoxAccaunt.SelectedItem as User;
+             student.Group =cBoxGroup.SelectedItem as Group;
+
+
+            if (!edit)
+            {
+                try
+                {
+                    BasketBDEntities.GetContext().Student.Add(student);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+            }
+            try
+            {
+                BasketBDEntities.GetContext().SaveChanges();
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
     }
 }

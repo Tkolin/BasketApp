@@ -22,7 +22,7 @@
             <TextBox Margin="0,0,0,25" x:Name="tBoxName"/>
 
             <Button   Margin="3" x:Name="btnBack" Click="btnBack_Click">Отмена</Button>
-            <Button   Margin="3" x:Name="btnSave" Click="btnSave_Click_1">Сохранить</Button>
+            <Button   Margin="3" x:Name="btnSave" Click="btnSave_Click">Сохранить</Button>
         </StackPanel>
 
     </Grid>

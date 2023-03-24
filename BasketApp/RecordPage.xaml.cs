@@ -44,19 +44,32 @@ namespace BasketApp
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            cBoxPresenc.ItemsSource = BasketBDEntities.GetContext().Presence.ToList();
+            cBoxPresenc.DisplayMemberPath = "Name";
+            cBoxPresenc.SelectedValuePath = "ID";
+
             if (group != null)
                 tBlockStudentName.Text += group.Name;
             if (coach != null)
                 tBlockStudentName.Text += coach.LastName + " " + coach.FirstName;
             if (student != null)
+            {
                 tBlockStudentName.Text += student.LastName + " " + student.FirstName;
-
+                btnAdd.Visibility = Visibility.Collapsed;
+                btnDel.Visibility = Visibility.Collapsed;
+                btnEdit.Visibility = Visibility.Collapsed;
+                tBlocPart.Visibility = Visibility.Collapsed;
+                cBoxPresenc.Visibility = Visibility.Collapsed;                          
+            }
             dataGrid.ItemsSource = getRecord(); 
 
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            if (dataGrid.SelectedItem == null)
+                return;
 
+            NavigationService.Navigate(new RecordManagementPage(((Record)dataGrid.SelectedItem)));
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -90,7 +103,9 @@ namespace BasketApp
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-
+            dPickDateEnd.SelectedDate = null;
+            dPickDateStart.SelectedDate = null;
+            tBoxName.Text = null;
         }
 
         public List<Record> getRecord()
@@ -119,5 +134,44 @@ namespace BasketApp
             return records;
         }
 
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGrid.SelectedItem == null)
+                return;
+            cBoxPresenc.SelectedItem = ((Record)dataGrid.SelectedItem).Presence;
+        }
+
+        private void dPickDateStart_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dataGrid.ItemsSource = getRecord();
+        }
+
+        private void dPickDateEnd_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            dataGrid.ItemsSource = getRecord();
+        }
+
+        private void tBoxName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            dataGrid.ItemsSource = getRecord();
+        }
+
+        private void cBoxPresenc_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dataGrid.SelectedItem == null)
+                return;
+            ((Record)dataGrid.SelectedItem).Presence = cBoxPresenc.SelectedItem as Presence;
+            try
+            {
+                BasketBDEntities.GetContext().SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+            dataGrid.ItemsSource = getRecord();
+        }
     }
 }

@@ -20,9 +20,15 @@ namespace BasketApp
     /// </summary>
     public partial class StudentPage : Page
     {
+        Coach coach;
         public StudentPage()
         {
             InitializeComponent();
+        }
+        public StudentPage(Coach coach)
+        {
+            InitializeComponent();
+            this.coach = coach; 
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -88,14 +94,16 @@ namespace BasketApp
         {
             List<Student> students = BasketBDEntities.GetContext().Student.ToList();
 
+            if(coach != null)
+                students = students.Where(c => c.Group.CoachID == coach.ID ).ToList();
 
             if (tBoxSearchCoach.Text.Length > 0)
             {
                 string ser = tBoxSearchCoach.Text.ToLower();
-                students = students.Where(c => c.Group.Coach.FirstName.ToLower().Contains(ser) ||
- c.Group.Coach.LastName.ToLower().Contains(ser) || 
- c.Group.Coach.Patronimic.ToLower().Contains(ser))
-     .ToList();
+                    students = students.Where(c => c.Group.Coach.FirstName.ToLower().Contains(ser) ||
+                     c.Group.Coach.LastName.ToLower().Contains(ser) || 
+                     c.Group.Coach.Patronimic.ToLower().Contains(ser))
+                     .ToList();
             }
             if (tBoxSearchStud.Text.Length > 0)
             {

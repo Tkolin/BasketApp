@@ -35,8 +35,7 @@ namespace BasketApp
             {
                 case 1:
                     student = BasketBDEntities.GetContext().Student.Where(s => s.User.ID == user.ID).First();
-                    btnCoach.Visibility = Visibility.Collapsed;
-                    btnStudent.Visibility = Visibility.Collapsed;
+                    NavigationService.Navigate(new RecordPage(student));
                     break;
                 case 2:
                     coachl = BasketBDEntities.GetContext().Coach.Where(s => s.User.ID == user.ID).First();
@@ -71,7 +70,10 @@ namespace BasketApp
 
         private void btnStudent_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new   StudentPage() );
+            if (coachl != null)
+                NavigationService.Navigate(new StudentPage(coachl));
+            else
+                NavigationService.Navigate(new StudentPage());
 
         }
 
