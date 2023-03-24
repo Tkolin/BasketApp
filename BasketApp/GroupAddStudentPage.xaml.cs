@@ -20,24 +20,48 @@ namespace BasketApp
     /// </summary>
     public partial class GroupAddStudentPage : Page
     {
-        public GroupAddStudentPage()
+        public Group group;
+        public GroupAddStudentPage(Group group)
         {
             InitializeComponent();
+            this.group = group;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            tBlockGrpoub.Text += group.Name.ToString();
 
+            cBoxLastName.SelectedValuePath = "ID";
+            cBoxLastName.DisplayMemberPath = "LastName";
+            cBoxLastName.ItemsSource = BasketBDEntities.GetContext().Student.ToList();
+
+            Binding binding = new Binding();
+
+            binding.ElementName = "cBoxLastName";
+            binding.Path = new PropertyPath("FirstName");
+            tBoxFirstName.SetBinding(TextBox.TextProperty, binding);
+
+            binding.ElementName = "cBoxLastName";
+            binding.Path = new PropertyPath("Patronymic");
+            tBoxFirstName.SetBinding(TextBox.TextProperty, binding);
+
+            binding.ElementName = "cBoxLastName";
+            binding.Path = new PropertyPath("UserID");
+            tBoxFirstName.SetBinding(TextBox.TextProperty, binding);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            if (cBoxLastName.SelectedItem == null)
+                return;
 
+            Student stud = (Student)cBoxLastName.SelectedItem;
+            stud.Group = group;
         }
     }
 }

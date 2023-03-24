@@ -15,9 +15,9 @@
             <StackPanel Orientation="Horizontal">
                 <Button  Margin="5" x:Name="btnBack" Click="btnBack_Click">Назад</Button>
                 <TextBlock  VerticalAlignment="Center">Название:</TextBlock>
-                <ComboBox Margin="5" Width="140" x:Name="tBoxSearchStud"  />
+                <TextBox Margin="5" Width="140" x:Name="tBoxSearchName" TextChanged="tBoxSearchName_TextChanged" />
                 <TextBlock  VerticalAlignment="Center">Тренер:</TextBlock>
-                <ComboBox Margin="5" Width="140" x:Name="tBoxSearchCoach" />
+                <ComboBox Margin="5" Width="140" x:Name="cBoxCoach" SelectionChanged="cBoxCoach_SelectionChanged"/>
                 <Button  Margin="5" x:Name="btnReset" Click="btnReset_Click">Сбросить</Button>
             </StackPanel>
 
@@ -38,7 +38,7 @@
                 <Button Margin="4" x:Name="btnDel" Click="btnDel_Click">Удалить</Button>
                 <Button Margin="4" x:Name="btnAdd" Click="btnAdd_Click">Добавить</Button>
                 <Button Margin="4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
-                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Редактировать</Button>
+                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Что-то забыл</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

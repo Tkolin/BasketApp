@@ -18,7 +18,7 @@
                 <TextBlock  VerticalAlignment="Center">ФИО тренера:</TextBlock>
                 <TextBox Margin="5" Width="140" x:Name="tBoxSearchCoach" TextChanged="tBoxSearchCoach_TextChanged"/>
                 <TextBlock  VerticalAlignment="Center">Группа:</TextBlock>
-                <ComboBox Width="100" x:Name="cBoxGroup" Margin="5"/>
+                <ComboBox Width="100" x:Name="cBoxGroup" Margin="5" SelectionChanged="cBoxGroup_SelectionChanged"/>
                 <Button  Margin="5" x:Name="btnReset" Click="btnReset_Click">Сбросить</Button>
             </StackPanel>
 

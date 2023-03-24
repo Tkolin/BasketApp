@@ -9,7 +9,7 @@
       Title="GroupAddStudentPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Добавить студента в группу: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
+        <TextBlock Text="Добавить студента в группу: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" x:Name="tBlockGrpoub" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
             <TextBlock Margin="10,0,0,0">Фамилия:</TextBlock>

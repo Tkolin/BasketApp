@@ -20,6 +20,7 @@ namespace BasketApp
     /// </summary>
     public partial class LoginPage : Page
     {
+        List<User> users;
         public LoginPage()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace BasketApp
 
         private void backBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Application.Current.Shutdown();
         }
 
         
@@ -35,11 +36,33 @@ namespace BasketApp
         private void btnAuth_Click(object sender, RoutedEventArgs e)
         {
 
+            if (login() == null)
+            {
+                MessageBox.Show("Проверьте логин/пароль!", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+            User users = login();
+
+            //NavigationService.Navigate(new MenyPage(users));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            users = BasketBDEntities.GetContext().User.ToList();
 
+        }
+
+        private User login()
+        {
+            foreach (User checkUser in users)
+            {
+                if (checkUser.Login.ToLower() == TBoxLogin.Text.ToLower() &&
+                    checkUser.Password == TBoxPassword.Text)
+                {
+                    return checkUser;
+                }
+            }
+            return null;
         }
     }
 }
