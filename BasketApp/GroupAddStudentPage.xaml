@@ -15,7 +15,7 @@
             <TextBlock Margin="10,0,0,0">Фамилия:</TextBlock>
             <ComboBox Margin="0,0,0,5" x:Name="cBoxLastName"/>
             <TextBlock Margin="10,0,0,0">Имя:</TextBlock>
-            <TextBox Margin="0,0,50,5" x:Name="tBoxFirstName" IsEnabled="False"/>
+            <TextBox Margin="0,0,50,5" x:Name="tBoxFirstName" IsEnabled="False" />
             <TextBlock Margin="10,0,0,0">Отчество:</TextBlock>
             <TextBox Margin="0,0,50,5" x:Name="tBoxPatronymic" IsEnabled="False"/>
             <TextBlock Margin="10,0,0,0">Учётная запись:</TextBlock>

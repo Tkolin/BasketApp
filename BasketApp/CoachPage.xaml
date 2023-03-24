@@ -23,14 +23,12 @@
 
             <DataGrid  Height="230" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateBirth}" Width="3*"/>
-                    <DataGridTextColumn Header="Пол" Binding="{Binding Genders.Name}" Width="2*"/>
-                    <DataGridTextColumn Header="Класс буква" Binding="{Binding ClassGroup.Name}" Width="2*"/>
-                    <DataGridTextColumn Header="номер" Binding="{Binding ClassGroup.Number}" Width="1.25*"/>
-                    <DataGridTextColumn Header="Учётная запись" Binding="{Binding Users.Login}" Width="2.4*"/>
+                    <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronimic}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Должность" Binding="{Binding Position.Name}" Width="3*"/>
+                    <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" Width="2*"/>
+                    <DataGridTextColumn Header="Логин" Binding="{Binding User.Login}" Width="2*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel  Orientation="Horizontal">

@@ -13,7 +13,7 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
             <TextBlock Margin="10,0,0,0">Студент:</TextBlock>
-            <ComboBox Margin="0,0,0,5" x:Name="cBoxGroup"/>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxStudent"/>
             <TextBlock Margin="10,0,0,0">Дата начала занятия</TextBlock>
             <DatePicker Margin="0,0,0,5" x:Name="dPickStart"/>
             <TextBlock Margin="10,0,0,0">Дата окончания занятия</TextBlock>

@@ -21,19 +21,33 @@ namespace BasketApp
     public partial class CoachManagementPage : Page
     {
         private Coach coach;
+        bool edit;
         public CoachManagementPage()
         {
             InitializeComponent();
             this.coach = new Coach();
+            edit = false; 
         }
         public CoachManagementPage(Coach coach)
         {
             InitializeComponent();
             this.coach = coach;
+            edit = true;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            if (coach != null)
+
+
+            cBoxAccaunt.SelectedValuePath = "ID";
+            cBoxAccaunt.DisplayMemberPath = "Login";
+            cBoxAccaunt.ItemsSource = BasketBDEntities.GetContext().User.ToList();
+
+
+            cBoxPosition.SelectedValuePath = "ID";
+            cBoxPosition.DisplayMemberPath = "Name";
+            cBoxPosition.ItemsSource = BasketBDEntities.GetContext().Position.ToList();
+
+            if (edit)
             {
                 tBoxFirstName.Text = coach.FirstName;
                 tBoxLastName.Text = coach.LastName;
@@ -53,9 +67,10 @@ namespace BasketApp
         {
             if (tBoxFirstName.Text.Length < 0||tBoxLastName.Text.Length < 0||cBoxPosition.SelectedItem == null)
             {
-                //MessegBox.Show
+                MessageBox.Show("Не все поля были заполнены!", "Внимание!");
                 return;
             }
+
             coach.FirstName = tBoxFirstName.Text;
             coach.LastName = tBoxLastName.Text;
             coach.Patronimic = tBoxPatronymic.Text;
@@ -63,7 +78,7 @@ namespace BasketApp
             coach.PositionID = ((Position)cBoxPosition.SelectedItem).ID;
             coach.UserID = ((User)cBoxAccaunt.SelectedItem).ID;
 
-            if(coach.ID.ToString().Length < 0)
+            if(!edit)
             {
                 try
                 {
@@ -82,7 +97,7 @@ namespace BasketApp
             {
                 MessageBox.Show(ex.Message);
             }
-
+            NavigationService.GoBack();
         }
 
     }

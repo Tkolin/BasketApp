@@ -23,6 +23,12 @@ namespace BasketApp
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new RecordPage();
         }
     }
 }

@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Patronimic" Type="varchar" MaxLength="50" />
@@ -27,7 +27,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
           <Property Name="CoachID" Type="int" />
         </EntityType>
@@ -35,21 +35,21 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Presence">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Record">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StudentID" Type="int" />
           <Property Name="Assessment" Type="int" />
           <Property Name="DateStart" Type="datetime" />
@@ -68,7 +68,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Patronimic" Type="varchar" MaxLength="50" />
@@ -90,9 +90,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
-          <Property Name="Login" Type="nchar" MaxLength="10" />
-          <Property Name="Password" Type="nchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="RoleID" Type="int" />
         </EntityType>
         <Association Name="FK_Coach_Position">
@@ -260,7 +260,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -281,7 +281,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CoachID" Type="Int32" />
           <NavigationProperty Name="Coach" Relationship="Self.FK_Group_Coach" FromRole="Group" ToRole="Coach" />
@@ -291,7 +291,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Coach" Relationship="Self.FK_Coach_Position" FromRole="Position" ToRole="Coach" />
         </EntityType>
@@ -299,7 +299,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Record" Relationship="Self.FK_Record_Presence" FromRole="Presence" ToRole="Record" />
         </EntityType>
@@ -307,9 +307,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StudentID" Type="Int32" />
-          <Property Name="Assessment" Type="Int32" />
           <Property Name="DateStart" Type="DateTime" Precision="3" />
           <Property Name="DateEnd" Type="DateTime" Precision="3" />
           <Property Name="PresenceID" Type="Int32" />
@@ -330,7 +329,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -355,9 +354,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
-          <Property Name="Login" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RoleID" Type="Int32" />
           <NavigationProperty Name="Coach" Relationship="Self.FK_Coach_User" FromRole="User" ToRole="Coach" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
@@ -576,7 +575,6 @@
               <MappingFragment StoreEntitySet="Record">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
-                <ScalarProperty Name="Assessment" ColumnName="Assessment" />
                 <ScalarProperty Name="DateStart" ColumnName="DateStart" />
                 <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
                 <ScalarProperty Name="PresenceID" ColumnName="PresenceID" />

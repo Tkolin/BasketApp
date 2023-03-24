@@ -31,7 +31,7 @@ namespace BasketApp
 
             cBoxCoach.SelectedValuePath = "ID";
             cBoxCoach.DisplayMemberPath = "LastName";
-            cBoxCoach.ItemsSource = EnglishKlassBDEntities.GetContext().ClassGroup.ToList();
+            cBoxCoach.ItemsSource = BasketBDEntities.GetContext().Coach.ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -88,22 +88,22 @@ namespace BasketApp
 
         public List<Group> getGroup()
         {
-            List<Group> coaches = BasketBDEntities.GetContext().Group.ToList();
+            List<Group> groups = BasketBDEntities.GetContext().Group.ToList();
 
 
-            if (cBoxGroup.Text.Length != null)
+            if (tBoxSearchName.Text.Length != null)
             {
-                string ser = tBoxSearchCoach.Text.ToLower();
-                coaches = coaches.Where(c => c.FirstName.ToLower().Contains(ser) || c.LastName.ToLower().Contains(ser) || c.Patronimic.ToLower().Contains(ser)).ToList();
+                string ser = tBoxSearchName.Text.ToLower();
+                groups = groups.Where(g => g.Name.ToLower().Contains(ser)).ToList();
             }
-            if (tBoxSearchName.Text.Length > 0)
+            if (cBoxCoach.SelectedItem != null)
             {
-                Group grp = cBoxGroup.SelectedItem as Group;
-                coaches = coaches.Where(c => c.ID == grp.CoachID).ToList();
+                Coach coach = cBoxCoach.SelectedItem as Coach;
+                groups = groups.Where(g => g.CoachID == coach.ID).ToList();
             }
 
 
-            return coaches;
+            return groups;
         }
 
 

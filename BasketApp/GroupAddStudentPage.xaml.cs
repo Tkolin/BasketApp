@@ -36,18 +36,20 @@ namespace BasketApp
             cBoxLastName.ItemsSource = BasketBDEntities.GetContext().Student.ToList();
 
             Binding binding = new Binding();
+            Binding binding1 = new Binding();
+            Binding binding2 = new Binding();
 
             binding.ElementName = "cBoxLastName";
-            binding.Path = new PropertyPath("FirstName");
+            binding.Path = new PropertyPath("SelectedItem.FirstName");
             tBoxFirstName.SetBinding(TextBox.TextProperty, binding);
 
-            binding.ElementName = "cBoxLastName";
-            binding.Path = new PropertyPath("Patronymic");
-            tBoxFirstName.SetBinding(TextBox.TextProperty, binding);
+            binding1.ElementName = "cBoxLastName";
+            binding1.Path = new PropertyPath("SelectedItem.Patronimic");
+            tBoxFirstName.SetBinding(TextBox.TextProperty, binding1);
 
-            binding.ElementName = "cBoxLastName";
-            binding.Path = new PropertyPath("UserID");
-            tBoxFirstName.SetBinding(TextBox.TextProperty, binding);
+            binding2.ElementName = "cBoxLastName";
+            binding2.Path = new PropertyPath("SelectedItem.User.Login");
+            tBoxFirstName.SetBinding(TextBox.TextProperty, binding2);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -62,6 +64,16 @@ namespace BasketApp
 
             Student stud = (Student)cBoxLastName.SelectedItem;
             stud.Group = group;
+
+            try
+            {
+                BasketBDEntities.GetContext().SaveChanges();
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

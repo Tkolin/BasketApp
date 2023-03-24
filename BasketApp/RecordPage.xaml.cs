@@ -51,6 +51,8 @@ namespace BasketApp
             if (student != null)
                 tBlockStudentName.Text += student.LastName + " " + student.FirstName;
 
+            dataGrid.ItemsSource = getRecord(); 
+
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
@@ -59,7 +61,7 @@ namespace BasketApp
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new RecordManagementPage());
         }
 
         private void btnDel_Click(object sender, RoutedEventArgs e)
@@ -69,7 +71,7 @@ namespace BasketApp
 
             try
             {
-                BasketBDEntities.GetContext().Student.Remove(((Student)dataGrid.SelectedItem));
+                BasketBDEntities.GetContext().Record.Remove(((Record)dataGrid.SelectedItem));
                 BasketBDEntities.GetContext().SaveChanges();
                 MessageBox.Show("Данные удалены! ");
             }
@@ -78,12 +80,12 @@ namespace BasketApp
                 MessageBox.Show(ex.Message.ToString());
             }
 
-            dataGrid.ItemsSource = getStudents();
+            dataGrid.ItemsSource = getRecord();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
@@ -95,20 +97,24 @@ namespace BasketApp
         {
             List<Record> records = BasketBDEntities.GetContext().Record.ToList();
 
-            if (group != null)
-                records = records.Where().ToList();
-            if (coach != null)
-                records = records.Where.ToList();
+            if (group != null) {
+                List<Student> _student = BasketBDEntities.GetContext().Student.Where(s => s.GroupID == group.ID).ToList();                                
+                records = records.Where(r => _student.Equals(r.Student)).ToList();        
+            }
+            if (coach != null) {
+                List<Student> _student = BasketBDEntities.GetContext().Student.Where(s => s.Group.CoachID == coach.ID).ToList();
+                records = records.Where(r => _student.Equals(r.Student)).ToList();
+            }
             if (student != null)
-                records = records.Where.ToList();
+                records = records.Where(r => r.StudentID == student.ID).ToList();
 
 
-            if ( dPickDateStart.SelectedDate != null)
-                records = records.Where.ToList();
+            if (dPickDateStart.SelectedDate != null)
+                records = records.Where(r => r.DateStart > dPickDateStart.SelectedDate.Value).ToList();
             if (dPickDateEnd.SelectedDate != null)
-                records = records.Where.ToList();
+                records = records.Where(r => r.DateEnd < dPickDateEnd.SelectedDate.Value).ToList();
             if (tBoxName.Text.Length > 0)
-                records = records.Where.ToList();
+                records = records.Where(r => r.Name.ToLower().Contains(tBoxName.Text.ToLower())).ToList();
 
             return records;
         }

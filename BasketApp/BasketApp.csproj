@@ -88,6 +88,9 @@
     <Compile Include="GroupPage.xaml.cs">
       <DependentUpon>GroupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainMenyPage.xaml.cs">
+      <DependentUpon>MainMenyPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenyPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

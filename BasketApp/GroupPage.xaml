@@ -23,14 +23,9 @@
 
             <DataGrid  Height="230" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Имя" Binding="{Binding Firstname}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Lastname}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateBirth}" Width="3*"/>
-                    <DataGridTextColumn Header="Пол" Binding="{Binding Genders.Name}" Width="2*"/>
-                    <DataGridTextColumn Header="Класс буква" Binding="{Binding ClassGroup.Name}" Width="2*"/>
-                    <DataGridTextColumn Header="номер" Binding="{Binding ClassGroup.Number}" Width="1.25*"/>
-                    <DataGridTextColumn Header="Учётная запись" Binding="{Binding Users.Login}" Width="2.4*"/>
+                    <DataGridTextColumn Header="Название группы" Binding="{Binding Name}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Coach.LastName}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Отчество" Binding="{Binding Coach.Patronimic}" Width="2.5*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel  Orientation="Horizontal">
@@ -38,7 +33,7 @@
                 <Button Margin="4" x:Name="btnDel" Click="btnDel_Click">Удалить</Button>
                 <Button Margin="4" x:Name="btnAdd" Click="btnAdd_Click">Добавить</Button>
                 <Button Margin="4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
-                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Что-то забыл</Button>
+
             </StackPanel>
         </StackPanel>
     </Grid>

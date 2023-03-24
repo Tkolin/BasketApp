@@ -16,7 +16,6 @@ namespace BasketApp
     {
         public int ID { get; set; }
         public Nullable<int> StudentID { get; set; }
-        public Nullable<int> Assessment { get; set; }
         public Nullable<System.DateTime> DateStart { get; set; }
         public Nullable<System.DateTime> DateEnd { get; set; }
         public Nullable<int> PresenceID { get; set; }

@@ -20,11 +20,17 @@ namespace BasketApp
     /// </summary>
     public partial class RecordActivityGroupPage : Page
     {
+        Group group;
         public RecordActivityGroupPage()
         {
             InitializeComponent();
+            this.group = new Group();
         }
-
+        public RecordActivityGroupPage(Group group)
+        {
+            InitializeComponent();
+            this.group = group;
+        }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 

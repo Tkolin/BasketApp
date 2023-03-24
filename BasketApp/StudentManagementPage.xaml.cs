@@ -20,11 +20,17 @@ namespace BasketApp
     /// </summary>
     public partial class StudentManagementPage : Page
     {
+        Student student;
         public StudentManagementPage()
         {
             InitializeComponent();
+            this.student = new Student();
         }
-
+        public StudentManagementPage(Student student)
+        {
+            InitializeComponent();
+            this.student = student;
+        }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 

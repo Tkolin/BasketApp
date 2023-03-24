@@ -86,26 +86,31 @@ namespace BasketApp
 
         public List<Student> getStudents()
         {
-            List<Student> coaches = BasketBDEntities.GetContext().Student.ToList();
+            List<Student> students = BasketBDEntities.GetContext().Student.ToList();
 
 
             if (tBoxSearchCoach.Text.Length > 0)
             {
                 string ser = tBoxSearchCoach.Text.ToLower();
-                coaches = coaches.Where(c => c.FirstName.ToLower().Contains(ser) || c.LastName.ToLower().Contains(ser) || c.Patronimic.ToLower().Contains(ser)).ToList();
+                students = students.Where(c => c.Group.Coach.FirstName.ToLower().Contains(ser) ||
+ c.Group.Coach.LastName.ToLower().Contains(ser) || 
+ c.Group.Coach.Patronimic.ToLower().Contains(ser))
+     .ToList();
+            }
+            if (tBoxSearchStud.Text.Length > 0)
+            {
+                string ser = tBoxSearchStud.Text.ToLower();
+                students = students.Where(c => c.FirstName.ToLower().Contains(ser) ||
+                c.LastName.ToLower().Contains(ser)||c.Patronimic.ToLower().Contains(ser))
+                    .ToList();
             }
             if (cBoxGroup.SelectedItem != null)
             {
-                Position grp = cBoxGroup.SelectedItem as Position;
-                coaches = coaches.Where(c => c.PositionID == grp.ID).ToList();
-            }
-            if (cBoxGroup.SelectedItem != null)
-            {
-                Position grp = cBoxGroup.SelectedItem as Position;
-                coaches = coaches.Where(c => c.PositionID == grp.ID).ToList();
+                Group grp = cBoxGroup.SelectedItem as Group;
+                students = students.Where(c => c.GroupID == grp.ID).ToList();
             }
 
-            return coaches;
+            return students;
         }
 
 
