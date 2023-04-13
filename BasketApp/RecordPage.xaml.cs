@@ -113,12 +113,10 @@ namespace BasketApp
             List<Record> records = BasketBDEntities.GetContext().Record.ToList();
 
             if (group != null) {
-                List<Student> _student = BasketBDEntities.GetContext().Student.Where(s => s.GroupID == group.ID).ToList();                                
-                records = records.Where(r => _student.Equals(r.Student)).ToList();        
+                records = records.Where(r => r.Student.GroupID == group.ID).ToList();
             }
             if (coach != null) {
-                List<Student> _student = BasketBDEntities.GetContext().Student.Where(s => s.Group.CoachID == coach.ID).ToList();
-                records = records.Where(r => _student.Equals(r.Student)).ToList();
+                records = records.Where(r=>r.Student.Group.CoachID == coach.ID).ToList();
             }
             if (student != null)
                 records = records.Where(r => r.StudentID == student.ID).ToList();

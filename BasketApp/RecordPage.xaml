@@ -28,7 +28,7 @@
                     <DataGridTextColumn Header="Фамилия студента" Binding="{Binding Student.LastName}" Width="2.5*"/>
                     <DataGridTextColumn Header="Начало занятия" Binding="{Binding DateStart}" Width="2.5*"/>
                     <DataGridTextColumn Header="Окончание занятия" Binding="{Binding DateEnd}" Width="3*"/>
-                    <DataGridTextColumn Header="Пол" Binding="{Binding Presence.Name}" Width="2*"/>
+                    <DataGridTextColumn Header="Оценка" Binding="{Binding Presence.Name}" Width="2*"/>
                     <DataGridTextColumn Header="Название задания" Binding="{Binding Name}" Width="2*"/>
                 </DataGrid.Columns>
             </DataGrid>
