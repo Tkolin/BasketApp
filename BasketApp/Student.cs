@@ -18,6 +18,7 @@ namespace BasketApp
         public Student()
         {
             this.Record = new HashSet<Record>();
+            this.Visit = new HashSet<Visit>();
         }
     
         public int ID { get; set; }
@@ -32,5 +33,7 @@ namespace BasketApp
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Record> Record { get; set; }
         public virtual User User { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Visit> Visit { get; set; }
     }
 }

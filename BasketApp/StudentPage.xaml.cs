@@ -121,6 +121,12 @@ namespace BasketApp
             return students;
         }
 
+        private void btnVisit_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem == null)
+                return;
 
+            NavigationService.Navigate(new VisitPage(dataGrid.SelectedItem as Student));
+        }
     }
 }

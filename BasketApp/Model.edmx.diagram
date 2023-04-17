@@ -24,7 +24,10 @@
         <AssociationConnector Association="BasketBDModel.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_User_Role1" ManuallyRouted="false" />
         <AssociationConnector Association="BasketBDModel.FK_Student_User" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="BasketBDModel.Visit" Width="1.5" PointX="12" PointY="5.125" />
+        <AssociationConnector Association="BasketBDModel.FK_Visit_Presence" />
+        <AssociationConnector Association="BasketBDModel.FK_Visit_Student1" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

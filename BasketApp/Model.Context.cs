@@ -42,5 +42,6 @@ namespace BasketApp
         public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Visit> Visit { get; set; }
     }
 }

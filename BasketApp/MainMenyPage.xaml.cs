@@ -81,5 +81,15 @@ namespace BasketApp
         {
             NavigationService.GoBack();
         }
+
+        private void btnVisit_Click(object sender, RoutedEventArgs e)
+        {
+            if (student != null)
+                NavigationService.Navigate(new VisitPage(student));
+            else if (coachl != null)
+                NavigationService.Navigate(new VisitPage(coachl));
+            else
+                NavigationService.Navigate(new VisitPage());
+        }
     }
 }

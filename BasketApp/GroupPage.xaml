@@ -9,7 +9,7 @@
       Title="GroupPage" Loaded="Page_Loaded">
 
 
-    <Grid>
+    <Grid Background="AliceBlue">
         <TextBlock Text="Просмотр списка групп" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic"/>
         <StackPanel Orientation="Vertical" Margin="26,60,26,26">
             <StackPanel Orientation="Horizontal">
@@ -33,8 +33,24 @@
                 <Button Margin="4" x:Name="btnDel" Click="btnDel_Click">Удалить</Button>
                 <Button Margin="4" x:Name="btnAdd" Click="btnAdd_Click">Добавить</Button>
                 <Button Margin="4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
-                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Задать задание группе</Button>
-                <Button Margin="4" x:Name="btnGoToRecordPage" Click="btnGoToRecordPage_Click">Успеваемость группы</Button>
+                
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal">
+
+                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Задать мироприятия группе</Button>
+                <Button Margin="4" x:Name="btnGoToRecordPage" Click="btnGoToRecordPage_Click">Мироприятия группы</Button>
+                <Button Margin="4" x:Name="btnVisitPage" Click="btnVisitPage_Click">Успеваемость группы</Button>
+
+            </StackPanel>
+            <StackPanel  Orientation="Horizontal" Background="CornflowerBlue" Margin="10" HorizontalAlignment="Center">
+
+                <TextBlock  VerticalAlignment="Center">Период от: </TextBlock>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0" x:Name="dPickDateStart"/>
+                <TextBlock  VerticalAlignment="Center">до: </TextBlock>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  x:Name="dPickDateEnd"/>
+                <Button  Margin="4" x:Name="btnReset2" Click="btnReset2_Click">Сбросить</Button>
+                <Button Margin="4" x:Name="btnOtchetForVisit" Click="btnOtchetForVisit_Click" >Отчёт по успеваемости</Button>
+
 
             </StackPanel>
         </StackPanel>
