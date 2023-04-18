@@ -61,8 +61,8 @@ namespace BasketApp
                 dPickBirth.SelectedDate == null)
 
 
-            student.FirstName =tBoxFirstName.Text;
-            student.LastName  =tBoxLastName.Text;
+             student.FirstName =tBoxFirstName.Text;
+             student.LastName  =tBoxLastName.Text;
              student.Patronimic= tBoxPatronymic.Text;
              student.DateBirth =dPickBirth.SelectedDate;
              student.User =cBoxAccaunt.SelectedItem as User;

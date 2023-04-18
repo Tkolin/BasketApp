@@ -66,8 +66,7 @@ namespace BasketApp
                 tBlocPart.Visibility = Visibility.Collapsed;
                 cBoxPresenc.Visibility = Visibility.Collapsed;
             }
-            else           
-                tBlockStudentName.Text += student.LastName + " " + student.FirstName;
+
 
             dataGrid.ItemsSource = getRecord();
 

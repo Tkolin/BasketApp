@@ -53,7 +53,6 @@ namespace BasketApp
                 try
                 {
                     BasketBDEntities.GetContext().Record.Add(record);
-                    BasketBDEntities.GetContext().SaveChanges();
                 }
                 catch (Exception ex)
                 {
@@ -61,6 +60,16 @@ namespace BasketApp
                 }
 
             }
+            try
+            {
+                BasketBDEntities.GetContext().SaveChanges();
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -77,6 +86,7 @@ namespace BasketApp
             if (edit)
             {
                 cBoxGroup.SelectedItem = group;
+                cBoxGroup.IsEnabled = false;
             }
         }
     }

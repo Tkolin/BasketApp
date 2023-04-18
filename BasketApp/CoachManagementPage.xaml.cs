@@ -75,8 +75,8 @@ namespace BasketApp
             coach.LastName = tBoxLastName.Text;
             coach.Patronimic = tBoxPatronymic.Text;
             coach.PhoneNumber = tBoxPhoneNumber.Text;
-            coach.PositionID = ((Position)cBoxPosition.SelectedItem).ID;
-            coach.UserID = ((User)cBoxAccaunt.SelectedItem).ID;
+            coach.Position = (Position)cBoxPosition.SelectedItem;
+            coach.User = (User)cBoxAccaunt.SelectedItem;
 
             if(!edit)
             {
@@ -92,12 +92,13 @@ namespace BasketApp
             try
             {
                 BasketBDEntities.GetContext().SaveChanges();
+                NavigationService.GoBack();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            NavigationService.GoBack();
+
         }
 
     }
