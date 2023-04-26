@@ -39,6 +39,17 @@
                 <Button Margin="4,4,50,4" x:Name="btnEdit" Click="btnEdit_Click">Редактировать</Button>
                 <Button Margin="4,4,50,4" x:Name="btnVisit" Click="btnVisit_Click">Успеваемость</Button>
             </StackPanel>
+            <StackPanel  Orientation="Horizontal" Background="CornflowerBlue" Margin="10" HorizontalAlignment="Center">
+
+                <TextBlock  VerticalAlignment="Center">Период от:</TextBlock>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0" x:Name="dPickDateStart"/>
+                <TextBlock  VerticalAlignment="Center">до:</TextBlock>
+                <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  x:Name="dPickDateEnd"/>
+                <Button  Margin="4" x:Name="btnReset2" Click="btnReset2_Click">Сбросить</Button>
+                <Button Margin="4" x:Name="btnOtchetForVisit" Click="btnOtchetForVisit_Click" >Отчёт по успеваемости</Button>
+
+
+            </StackPanel>
         </StackPanel>
     </Grid>
 </Page>
