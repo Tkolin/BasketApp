@@ -18,9 +18,14 @@
             <TextBox Margin="0,0,0,5" x:Name="tBoxFirstName"/>
             <TextBlock Margin="10,0,0,0">Отчество:</TextBlock>
             <TextBox Margin="0,0,0,5" x:Name="tBoxPatronymic"/>
+            
+            <TextBlock Margin="10,0,0,0">Пол:</TextBlock>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxGender"/>
+
             <TextBlock Margin="10,0,0,0">Номер телефона:</TextBlock>
             <TextBox Margin="0,0,0,5" x:Name="tBoxPhoneNumber"/>
-            <TextBlock Margin="10,0,0,0">Должность:</TextBlock>
+            
+            <TextBlock Margin="10,0,0,0">Квалификация:</TextBlock>
             <ComboBox Margin="0,0,0,5" x:Name="cBoxPosition"/>
             <TextBlock Margin="10,0,0,0">Логин учётной записи:</TextBlock>
             <ComboBox Margin="0,0,0,25" x:Name="cBoxAccaunt"/>

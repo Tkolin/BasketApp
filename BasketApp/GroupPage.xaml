@@ -17,15 +17,37 @@
                 <TextBlock  VerticalAlignment="Center">Название:</TextBlock>
                 <TextBox Margin="5" Width="140" x:Name="tBoxSearchName" TextChanged="tBoxSearchName_TextChanged" />
                 <TextBlock  VerticalAlignment="Center">Тренер:</TextBlock>
-                <ComboBox Margin="5" Width="140" x:Name="cBoxCoach" SelectionChanged="cBoxCoach_SelectionChanged"/>
+                <ComboBox Margin="5" Width="140" x:Name="cBoxCoach" SelectionChanged="cBoxCoach_SelectionChanged">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding LastName}" />
+                                <TextBlock Text="{Binding FirstName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <Button  Margin="5" x:Name="btnReset" Click="btnReset_Click">Сбросить</Button>
             </StackPanel>
 
             <DataGrid  Height="230" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Название группы" Binding="{Binding Name}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Фамилия" Binding="{Binding Coach.LastName}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Отчество" Binding="{Binding Coach.Patronimic}" Width="2.5*"/>
+
+
+                    <DataGridTemplateColumn Header="Тренер" Width="2.5*" >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Coach.LastName}"/>
+                                    <TextBlock Text=" "/>
+                                    <TextBlock Text="{Binding Coach.FirstName}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Числиность" x:Name="countStud" 
+                                        Binding="{Binding Student.Count}" Width="1*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel  Orientation="Horizontal">
@@ -37,8 +59,8 @@
             </StackPanel>
             <StackPanel  Orientation="Horizontal">
 
-                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Задать мироприятия группе</Button>
-                <Button Margin="4" x:Name="btnGoToRecordPage" Click="btnGoToRecordPage_Click">Мироприятия группы</Button>
+                <Button Margin="4" x:Name="btnRecordActivityGroup" Click="btnRecordActivityGroup_Click">Задать задание группе</Button>
+                <Button Margin="4" x:Name="btnGoToRecordPage" Click="btnGoToRecordPage_Click">Задания группы</Button>
                 <Button Margin="4" x:Name="btnVisitPage" Click="btnVisitPage_Click">Успеваемость группы</Button>
 
             </StackPanel>

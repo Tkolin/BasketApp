@@ -32,16 +32,17 @@ namespace BasketApp
 
             return _context;
         }
-        public virtual DbSet<Coach> Coach { get; set; }
         public virtual DbSet<Grade> Grade { get; set; }
         public virtual DbSet<Group> Group { get; set; }
         public virtual DbSet<Position> Position { get; set; }
         public virtual DbSet<Presence> Presence { get; set; }
         public virtual DbSet<Record> Record { get; set; }
         public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Student> Student { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Visit> Visit { get; set; }
+        public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<Coach> Coach { get; set; }
+        public virtual DbSet<Student> Student { get; set; }
     }
 }

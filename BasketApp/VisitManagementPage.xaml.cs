@@ -38,7 +38,6 @@ namespace BasketApp
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            cBoxStudent.DisplayMemberPath = "LastName";
             cBoxStudent.SelectedValuePath = "ID";
             cBoxStudent.ItemsSource = BasketBDEntities.GetContext().Student.ToList();
 

@@ -9,7 +9,7 @@
       Title="StudentManagementPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Редактирование/добавление студента" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
+        <TextBlock Text="Редактирование/добавление ученика" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
             <TextBlock Margin="10,0,0,0">Фамилия:</TextBlock>
@@ -18,6 +18,12 @@
             <TextBox Margin="0,0,0,5" x:Name="tBoxFirstName"/>
             <TextBlock Margin="10,0,0,0">Отчество:</TextBlock>
             <TextBox Margin="0,0,0,5" x:Name="tBoxPatronymic"/>
+
+            <TextBlock Margin="10,0,0,0">Пол:</TextBlock>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxGender"/>
+            <TextBlock Margin="10,0,0,0">Номер телефона:</TextBlock>
+            <TextBox Margin="0,0,0,5" x:Name="tBoxPhoneNumber"/>
+
             <TextBlock Margin="10,0,0,0">Дата рождения:</TextBlock>
             <DatePicker Margin="0,0,0,5" x:Name="dPickBirth"/>
             <TextBlock Margin="10,0,0,0">Группа:</TextBlock>

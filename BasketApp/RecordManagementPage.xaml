@@ -9,10 +9,10 @@
       Title="RecordManagementPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Редактирование мироприятие студента" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
+        <TextBlock Text="Редактирование задание ученика" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
-            <TextBlock Margin="10,0,0,0">Студент:</TextBlock>
+            <TextBlock Margin="10,0,0,0">Ученик:</TextBlock>
             <ComboBox Margin="0,0,0,5" x:Name="cBoxStudent"/>
             <TextBlock Margin="10,0,0,0">Дата начала занятия</TextBlock>
             <DatePicker Margin="0,0,0,5" x:Name="dPickStart"/>

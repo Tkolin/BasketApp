@@ -14,8 +14,17 @@
 
             <TextBlock Margin="10,0,0,0">Номер занятия:</TextBlock>
             <TextBox Margin="0,0,0,5" x:Name="tBoxID" IsEnabled="False"/>
-            <TextBlock Margin="10,0,0,0">Студент:</TextBlock>
-            <ComboBox Margin="0,0,0,5" x:Name="cBoxStudent"/>
+            <TextBlock Margin="10,0,0,0">Ученик:</TextBlock>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxStudent">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding LastName}" />
+                            <TextBlock Text="{Binding FirstName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Margin="10,0,0,0">Дата занятия:</TextBlock>
             <DatePicker Margin="0,0,0,5" x:Name="dPicerDate"/>
             <Button Width="100" x:Name="btnDateNow" Click="btnDateNow_Click">Текущая дата</Button>

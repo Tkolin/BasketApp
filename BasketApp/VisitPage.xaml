@@ -10,7 +10,7 @@
 
 
     <Grid Background="AliceBlue">
-        <TextBlock Text="Успеваемость: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"  x:Name="tBlockStudentName" FontStyle="Italic"/>
+        <TextBlock Text="Успеваемость " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"  x:Name="tBlockStudentName" FontStyle="Italic"/>
         <StackPanel Orientation="Vertical" Margin="26,60,26,26">
             <StackPanel Orientation="Horizontal">
                 <Button  Margin="5" x:Name="btnBack" Click="btnBack_Click">Назад</Button>
@@ -18,7 +18,7 @@
                 <DatePicker VerticalAlignment="Center" Margin="0,0,10,0" x:Name="dPickDateStart" SelectedDateChanged="dPickDateStart_SelectedDateChanged"/>
                 <TextBlock  VerticalAlignment="Center">до:</TextBlock>
                 <DatePicker VerticalAlignment="Center" Margin="0,0,10,0"  x:Name="dPickDateEnd" SelectedDateChanged="dPickDateEnd_SelectedDateChanged" />
-                <TextBlock  VerticalAlignment="Center">Студент:</TextBlock>
+                <TextBlock  VerticalAlignment="Center">Ученик:</TextBlock>
                 <TextBox Width="200" x:Name="tBoxStud" Margin="5" TextChanged="tBoxName_TextChanged"/>
                 <Button  Margin="5" x:Name="btnReset" Click="btnReset_Click">Сбросить</Button>
             </StackPanel>

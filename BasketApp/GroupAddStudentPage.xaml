@@ -9,11 +9,20 @@
       Title="GroupAddStudentPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Добавить студента в группу: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" x:Name="tBlockGrpoub" />
+        <TextBlock Text="Добавить ученика в группу " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic" x:Name="tBlockGrpoub" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
-            <TextBlock Margin="10,0,0,0">Фамилия:</TextBlock>
-            <ComboBox Margin="0,0,0,5" x:Name="cBoxLastName"/>
+            <TextBlock Margin="10,0,0,0">Ученик:</TextBlock>
+            <ComboBox Margin="0,0,0,5" x:Name="cBoxLastName">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding LastName}" />
+                            <TextBlock Text="{Binding FirstName}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <TextBlock Margin="10,0,0,0">Имя:</TextBlock>
             <TextBox Margin="0,0,50,5" x:Name="tBoxFirstName" IsEnabled="False" />
             <TextBlock Margin="10,0,0,0">Отчество:</TextBlock>

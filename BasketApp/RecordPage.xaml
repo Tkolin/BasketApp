@@ -10,7 +10,7 @@
 
 
     <Grid>
-        <TextBlock Text="Мироприятия: " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"  x:Name="tBlockStudentName" FontStyle="Italic"/>
+        <TextBlock Text="Задания " HorizontalAlignment="Center" FontSize="30" FontWeight="Bold"  x:Name="tBlockStudentName" FontStyle="Italic"/>
         <StackPanel Orientation="Vertical" Margin="26,60,26,26">
             <StackPanel Orientation="Horizontal">
                 <Button  Margin="5" x:Name="btnBack" Click="btnBack_Click">Назад</Button>
@@ -25,9 +25,9 @@
 
             <DataGrid  Height="230" x:Name="dataGrid" AutoGenerateColumns="False" IsReadOnly="True" SelectionChanged="dataGrid_SelectionChanged">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Фамилия студента" Binding="{Binding Student.LastName}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Начало занятия" Binding="{Binding DateStart}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Окончание занятия" Binding="{Binding DateEnd}" Width="3*"/>
+                    <DataGridTextColumn Header="Фамилия ученика" Binding="{Binding Student.LastName}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Срок выдачи задания" Binding="{Binding DateStart}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Срок сдачи задания" Binding="{Binding DateEnd}" Width="3*"/>
                     <DataGridTextColumn Header="Оценка" Binding="{Binding Presence.Name}" Width="2*"/>
                     <DataGridTextColumn Header="Название задания" Binding="{Binding Name}" Width="2*"/>
                 </DataGrid.Columns>

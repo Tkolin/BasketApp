@@ -26,9 +26,11 @@
                     <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="2.5*"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="2.5*"/>
                     <DataGridTextColumn Header="Отчество" Binding="{Binding Patronimic}" Width="2.5*"/>
-                    <DataGridTextColumn Header="Должность" Binding="{Binding Position.Name}" Width="3*"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}" Width="1*"/>
                     <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" Width="2*"/>
-                    <DataGridTextColumn Header="Логин" Binding="{Binding User.Login}" Width="2*"/>
+
+                    <DataGridTextColumn Header="Квалификация" Binding="{Binding Position.Name}" Width="3*"/>
+          <DataGridTextColumn Header="Логин" Binding="{Binding User.Login}" Width="2*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel  Orientation="Horizontal">

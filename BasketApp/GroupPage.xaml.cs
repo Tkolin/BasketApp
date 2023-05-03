@@ -31,7 +31,6 @@ namespace BasketApp
             dataGrid.ItemsSource = getGroup();
 
             cBoxCoach.SelectedValuePath = "ID";
-            cBoxCoach.DisplayMemberPath = "LastName";
             cBoxCoach.ItemsSource = BasketBDEntities.GetContext().Coach.ToList();
         }
 
@@ -188,8 +187,8 @@ namespace BasketApp
             ws.Range["A6:F6"].Font.Bold = true; ws.Range["A6:F6"].HorizontalAlignment = XlHAlign.xlHAlignCenter;
             ws.Range["A6:F6"].RowHeight = 30; ws.Range["A6:F6"].WrapText = true;
             ws.Range["A6"].Value = "Номер записи";
-            ws.Range["B6"].Value = "Имя студента";
-            ws.Range["C6"].Value = "Фамилия студента";
+            ws.Range["B6"].Value = "Имя ученика";
+            ws.Range["C6"].Value = "Фамилия ученика";
             ws.Range["D6"].Value = "Группа";
             ws.Range["E6"].Value = "Дата посещения";
             ws.Range["F6"].Value = "Оценка";

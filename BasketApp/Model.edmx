@@ -16,6 +16,14 @@
           <Property Name="PositionID" Type="int" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="UserID" Type="int" />
+          <Property Name="GenderID" Type="int" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Grade">
           <Key>
@@ -74,6 +82,8 @@
           <Property Name="DateBirth" Type="date" />
           <Property Name="GroupID" Type="int" />
           <Property Name="UserID" Type="int" />
+          <Property Name="GenderID" Type="int" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="11" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -103,6 +113,18 @@
           <Property Name="PresenceID" Type="int" />
           <Property Name="Date" Type="date" />
         </EntityType>
+        <Association Name="FK_Coach_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Coach_Position">
           <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
           <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
@@ -160,6 +182,18 @@
             </Principal>
             <Dependent Role="Record">
               <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GenderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -237,6 +271,7 @@
         </Association>
         <EntityContainer Name="Хранилище BasketBDModelContainer">
           <EntitySet Name="Coach" EntityType="Self.Coach" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
@@ -247,6 +282,10 @@
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Visit" EntityType="Self.Visit" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Coach_Gender" Association="Self.FK_Coach_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
           <AssociationSet Name="FK_Coach_Position" Association="Self.FK_Coach_Position">
             <End Role="Position" EntitySet="Position" />
             <End Role="Coach" EntitySet="Coach" />
@@ -266,6 +305,10 @@
           <AssociationSet Name="FK_Record_Student" Association="Self.FK_Record_Student">
             <End Role="Student" EntitySet="Student" />
             <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Gender" Association="Self.FK_Student_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
             <End Role="Group" EntitySet="Group" />
@@ -296,21 +339,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BasketBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Coach">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PositionID" Type="Int32" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="Position" Relationship="Self.FK_Coach_Position" FromRole="Coach" ToRole="Position" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Coach_User" FromRole="Coach" ToRole="User" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_Group_Coach" FromRole="Coach" ToRole="Group" />
-        </EntityType>
         <EntityType Name="Grade">
           <Key>
             <PropertyRef Name="ID" />
@@ -324,8 +352,8 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CoachID" Type="Int32" />
-          <NavigationProperty Name="Coach" Relationship="Self.FK_Group_Coach" FromRole="Group" ToRole="Coach" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_Group" FromRole="Group" ToRole="Student" />
+          <NavigationProperty Name="Coach" Relationship="BasketBDModel.FK_Group_Coach" FromRole="Group" ToRole="Coach" />
+          <NavigationProperty Name="Student" Relationship="BasketBDModel.FK_Student_Group" FromRole="Group" ToRole="Student" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -333,7 +361,7 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Coach" Relationship="Self.FK_Coach_Position" FromRole="Position" ToRole="Coach" />
+          <NavigationProperty Name="Coach" Relationship="BasketBDModel.FK_Coach_Position" FromRole="Position" ToRole="Coach" />
         </EntityType>
         <EntityType Name="Presence">
           <Key>
@@ -355,7 +383,7 @@
           <Property Name="PresenceID" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Presence" Relationship="Self.FK_Record_Presence" FromRole="Record" ToRole="Presence" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Record_Student" FromRole="Record" ToRole="Student" />
+          <NavigationProperty Name="Student" Relationship="BasketBDModel.FK_Record_Student" FromRole="Record" ToRole="Student" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -366,22 +394,6 @@
           <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="Self.FK_User_Role1" FromRole="Role" ToRole="User" />
         </EntityType>
-        <EntityType Name="Student">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DateBirth" Type="DateTime" Precision="0" />
-          <Property Name="GroupID" Type="Int32" />
-          <Property Name="UserID" Type="Int32" />
-          <NavigationProperty Name="Group" Relationship="Self.FK_Student_Group" FromRole="Student" ToRole="Group" />
-          <NavigationProperty Name="Record" Relationship="Self.FK_Record_Student" FromRole="Student" ToRole="Record" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Student_User" FromRole="Student" ToRole="User" />
-          <NavigationProperty Name="Visit" Relationship="BasketBDModel.FK_Visit_Student1" FromRole="Student" ToRole="Visit" />
-          </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -400,59 +412,11 @@
           <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="RoleID" Type="Int32" />
-          <NavigationProperty Name="Coach" Relationship="Self.FK_Coach_User" FromRole="User" ToRole="Coach" />
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
           <NavigationProperty Name="Role1" Relationship="Self.FK_User_Role1" FromRole="User" ToRole="Role" />
-          <NavigationProperty Name="Student" Relationship="Self.FK_Student_User" FromRole="User" ToRole="Student" />
+          <NavigationProperty Name="Coach" Relationship="BasketBDModel.FK_Coach_User" FromRole="User" ToRole="Coach" />
+          <NavigationProperty Name="Student" Relationship="BasketBDModel.FK_Student_User" FromRole="User" ToRole="Student" />
         </EntityType>
-        <Association Name="FK_Coach_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
-          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Position">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Coach">
-              <PropertyRef Name="PositionID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Coach_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Coach" Type="Self.Coach" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Coach">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Group_Coach">
-          <End Role="Coach" Type="Self.Coach" Multiplicity="0..1" />
-          <End Role="Group" Type="Self.Group" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Coach">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Group">
-              <PropertyRef Name="CoachID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Student_Group">
-          <End Role="Group" Type="Self.Group" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Group">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Record_Presence">
           <End Role="Presence" Type="Self.Presence" Multiplicity="0..1" />
           <End Role="Record" Type="Self.Record" Multiplicity="*" />
@@ -462,18 +426,6 @@
             </Principal>
             <Dependent Role="Record">
               <PropertyRef Name="PresenceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Record_Student">
-          <End Role="Student" Type="Self.Student" Multiplicity="0..1" />
-          <End Role="Record" Type="Self.Record" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Student">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Record">
-              <PropertyRef Name="StudentID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -501,51 +453,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Student_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Student" Type="Self.Student" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Student">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BasketBDEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Coach" EntityType="Self.Coach" />
           <EntitySet Name="Grade" EntityType="Self.Grade" />
           <EntitySet Name="Group" EntityType="Self.Group" />
           <EntitySet Name="Position" EntityType="Self.Position" />
           <EntitySet Name="Presence" EntityType="Self.Presence" />
           <EntitySet Name="Record" EntityType="Self.Record" />
           <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Student" EntityType="Self.Student" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="User" EntityType="Self.User" />
-          <AssociationSet Name="FK_Coach_Position" Association="Self.FK_Coach_Position">
-            <End Role="Position" EntitySet="Position" />
-            <End Role="Coach" EntitySet="Coach" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Coach_User" Association="Self.FK_Coach_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Coach" EntitySet="Coach" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Group_Coach" Association="Self.FK_Group_Coach">
-            <End Role="Coach" EntitySet="Coach" />
-            <End Role="Group" EntitySet="Group" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Student_Group" Association="Self.FK_Student_Group">
-            <End Role="Group" EntitySet="Group" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
           <AssociationSet Name="FK_Record_Presence" Association="Self.FK_Record_Presence">
             <End Role="Presence" EntitySet="Presence" />
-            <End Role="Record" EntitySet="Record" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Record_Student" Association="Self.FK_Record_Student">
-            <End Role="Student" EntitySet="Student" />
             <End Role="Record" EntitySet="Record" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
@@ -556,14 +474,45 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Student_User" Association="Self.FK_Student_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Student" EntitySet="Student" />
-          </AssociationSet>
           <EntitySet Name="Visit" EntityType="BasketBDModel.Visit" />
           <AssociationSet Name="FK_Visit_Presence" Association="BasketBDModel.FK_Visit_Presence">
             <End Role="Presence" EntitySet="Presence" />
             <End Role="Visit" EntitySet="Visit" />
+          </AssociationSet>
+          <EntitySet Name="Gender" EntityType="BasketBDModel.Gender" />
+          <EntitySet Name="Coach" EntityType="BasketBDModel.Coach" />
+          <EntitySet Name="Student" EntityType="BasketBDModel.Student" />
+          <AssociationSet Name="FK_Coach_Gender" Association="BasketBDModel.FK_Coach_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_Position" Association="BasketBDModel.FK_Coach_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Coach_User" Association="BasketBDModel.FK_Coach_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Coach" EntitySet="Coach" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_Coach" Association="BasketBDModel.FK_Group_Coach">
+            <End Role="Coach" EntitySet="Coach" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Gender" Association="BasketBDModel.FK_Student_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_Group" Association="BasketBDModel.FK_Student_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Record_Student" Association="BasketBDModel.FK_Record_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Record" EntitySet="Record" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Student_User" Association="BasketBDModel.FK_Student_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Student" EntitySet="Student" />
           </AssociationSet>
           <AssociationSet Name="FK_Visit_Student1" Association="BasketBDModel.FK_Visit_Student1">
             <End Role="Student" EntitySet="Student" />
@@ -593,6 +542,147 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Coach" Relationship="BasketBDModel.FK_Coach_Gender" FromRole="Gender" ToRole="Coach" />
+          <NavigationProperty Name="Student" Relationship="BasketBDModel.FK_Student_Gender" FromRole="Gender" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Coach">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PositionID" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <NavigationProperty Name="Gender" Relationship="BasketBDModel.FK_Coach_Gender" FromRole="Coach" ToRole="Gender" />
+          <NavigationProperty Name="Position" Relationship="BasketBDModel.FK_Coach_Position" FromRole="Coach" ToRole="Position" />
+          <NavigationProperty Name="User" Relationship="BasketBDModel.FK_Coach_User" FromRole="Coach" ToRole="User" />
+          <NavigationProperty Name="Group" Relationship="BasketBDModel.FK_Group_Coach" FromRole="Coach" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Patronimic" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateBirth" Type="DateTime" Precision="0" />
+          <Property Name="GroupID" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Gender" Relationship="BasketBDModel.FK_Student_Gender" FromRole="Student" ToRole="Gender" />
+          <NavigationProperty Name="Group" Relationship="BasketBDModel.FK_Student_Group" FromRole="Student" ToRole="Group" />
+          <NavigationProperty Name="Record" Relationship="BasketBDModel.FK_Record_Student" FromRole="Student" ToRole="Record" />
+          <NavigationProperty Name="User" Relationship="BasketBDModel.FK_Student_User" FromRole="Student" ToRole="User" />
+          <NavigationProperty Name="Visit" Relationship="BasketBDModel.FK_Visit_Student1" FromRole="Student" ToRole="Visit" />
+        </EntityType>
+        <Association Name="FK_Coach_Gender">
+          <End Type="BasketBDModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Coach" Role="Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_Position">
+          <End Type="BasketBDModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Coach" Role="Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="PositionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Coach_User">
+          <End Type="BasketBDModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Coach" Role="Coach" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Coach">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_Coach">
+          <End Type="BasketBDModel.Coach" Role="Coach" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Coach">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="CoachID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Gender">
+          <End Type="BasketBDModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_Group">
+          <End Type="BasketBDModel.Group" Role="Group" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Record_Student">
+          <End Type="BasketBDModel.Student" Role="Student" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Record" Role="Record" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Record">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Student_User">
+          <End Type="BasketBDModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="BasketBDModel.Student" Role="Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Visit_Student1">
           <End Type="BasketBDModel.Student" Role="Student" Multiplicity="0..1" />
           <End Type="BasketBDModel.Visit" Role="Visit" Multiplicity="*" />
@@ -611,19 +701,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище BasketBDModelContainer" CdmEntityContainer="BasketBDEntities">
-          <EntitySetMapping Name="Coach">
-            <EntityTypeMapping TypeName="BasketBDModel.Coach">
-              <MappingFragment StoreEntitySet="Coach">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
-                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Grade">
             <EntityTypeMapping TypeName="BasketBDModel.Grade">
               <MappingFragment StoreEntitySet="Grade">
@@ -676,19 +753,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Student">
-            <EntityTypeMapping TypeName="BasketBDModel.Student">
-              <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
-                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="BasketBDModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -717,6 +781,43 @@
                 <ScalarProperty Name="PresenceID" ColumnName="PresenceID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="BasketBDModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Coach">
+            <EntityTypeMapping TypeName="BasketBDModel.Coach">
+              <MappingFragment StoreEntitySet="Coach">
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PositionID" ColumnName="PositionID" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="BasketBDModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="DateBirth" ColumnName="DateBirth" />
+                <ScalarProperty Name="Patronimic" ColumnName="Patronimic" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

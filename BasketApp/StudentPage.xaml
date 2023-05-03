@@ -9,11 +9,11 @@
       Title="StudentPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Просмотр списка студентов" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic"/>
+        <TextBlock Text="Просмотр списка учеников" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" FontStyle="Italic"/>
         <StackPanel Orientation="Vertical" Margin="26,60,26,26">
             <StackPanel Orientation="Horizontal">
                 <Button  Margin="5" x:Name="btnBack" Click="btnBack_Click">Назад</Button>
-                <TextBlock  VerticalAlignment="Center">ФИО студента:</TextBlock>
+                <TextBlock  VerticalAlignment="Center">ФИО ученика:</TextBlock>
                 <TextBox Margin="5" Width="140" x:Name="tBoxSearchStud" TextChanged="tBoxSearchStud_TextChanged"/>
                 <TextBlock  VerticalAlignment="Center">ФИО тренера:</TextBlock>
                 <TextBox Margin="5" Width="140" x:Name="tBoxSearchCoach" TextChanged="tBoxSearchCoach_TextChanged"/>
@@ -27,6 +27,9 @@
                     <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="2.5*"/>
                     <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="2.5*"/>
                     <DataGridTextColumn Header="Отчество" Binding="{Binding Patronimic}" Width="2.5*"/>
+                    <DataGridTextColumn Header="Пол" Binding="{Binding Gender.Name}" Width="1*"/>
+                    <DataGridTextColumn Header="Номер телефона" Binding="{Binding PhoneNumber}" Width="2*"/>
+
                     <DataGridTextColumn Header="Дата рождения" Binding="{Binding DateBirth}" Width="3*"/>
                     <DataGridTextColumn Header="Группа" Binding="{Binding Group.Name}" Width="2*"/>
                     <DataGridTextColumn Header="Логин" Binding="{Binding User.Login}" Width="2*"/>

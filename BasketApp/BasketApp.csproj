@@ -73,6 +73,9 @@
     <Compile Include="CoachPage.xaml.cs">
       <DependentUpon>CoachPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Gender.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Grade.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

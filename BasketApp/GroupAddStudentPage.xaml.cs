@@ -32,7 +32,6 @@ namespace BasketApp
             tBlockGrpoub.Text += group.Name.ToString();
 
             cBoxLastName.SelectedValuePath = "ID";
-            cBoxLastName.DisplayMemberPath = "LastName";
             cBoxLastName.ItemsSource = BasketBDEntities.GetContext().Student.ToList();
 
             Binding binding = new Binding();
@@ -45,11 +44,11 @@ namespace BasketApp
 
             binding1.ElementName = "cBoxLastName";
             binding1.Path = new PropertyPath("SelectedItem.Patronimic");
-            tBoxFirstName.SetBinding(TextBox.TextProperty, binding1);
+            tBoxPatronymic.SetBinding(TextBox.TextProperty, binding1);
 
             binding2.ElementName = "cBoxLastName";
             binding2.Path = new PropertyPath("SelectedItem.User.Login");
-            tBoxFirstName.SetBinding(TextBox.TextProperty, binding2);
+            tBoxAccount.SetBinding(TextBox.TextProperty, binding2);
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)

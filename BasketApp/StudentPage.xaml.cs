@@ -33,7 +33,7 @@ namespace BasketApp
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            dataGrid.ItemsSource = getStudents();
+            getStudents();
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +56,7 @@ namespace BasketApp
                 MessageBox.Show(ex.Message.ToString());
             }
 
-            dataGrid.ItemsSource = getStudents();
+            getStudents();
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -74,24 +74,24 @@ namespace BasketApp
 
         private void tBoxSearchStud_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid.ItemsSource = getStudents();
+            getStudents();
         }
 
         private void tBoxSearchCoach_TextChanged(object sender, TextChangedEventArgs e)
         {
-            dataGrid.ItemsSource = getStudents();
+            getStudents();
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.ItemsSource = getStudents();
+            getStudents();
         }
         private void cBoxGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            dataGrid.ItemsSource = getStudents();
+            getStudents();
         }
 
-        public List<Student> getStudents()
+        public void getStudents()
         {
             List<Student> students = BasketBDEntities.GetContext().Student.ToList();
 
@@ -119,7 +119,8 @@ namespace BasketApp
                 students = students.Where(c => c.GroupID == grp.ID).ToList();
             }
 
-            return students;
+            
+            dataGrid.ItemsSource = students;
         }
 
         private void btnVisit_Click(object sender, RoutedEventArgs e)

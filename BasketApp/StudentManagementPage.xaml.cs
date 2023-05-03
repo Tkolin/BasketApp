@@ -44,6 +44,11 @@ namespace BasketApp
             cBoxGroup.SelectedValuePath = "ID";
             cBoxGroup.ItemsSource = BasketBDEntities.GetContext().Group.ToList();
 
+
+            cBoxGender.DisplayMemberPath = "Name";
+            cBoxGender.SelectedValuePath = "ID";
+            cBoxGender.ItemsSource = BasketBDEntities.GetContext().Gender.ToList();
+
             if (edit)
             {
                 tBoxFirstName.Text = student.FirstName;
@@ -52,6 +57,9 @@ namespace BasketApp
                 dPickBirth.SelectedDate = student.DateBirth;
                 cBoxAccaunt.SelectedItem = student.User;
                 cBoxGroup.SelectedItem = student.Group;
+
+                tBoxPhoneNumber.Text = student.PhoneNumber;
+                cBoxGender.SelectedItem = student.Gender;
             }
         }
 
@@ -61,13 +69,15 @@ namespace BasketApp
                 dPickBirth.SelectedDate == null)
 
 
-             student.FirstName =tBoxFirstName.Text;
-             student.LastName  =tBoxLastName.Text;
+             student.FirstName = tBoxFirstName.Text;
+             student.LastName  = tBoxLastName.Text;
              student.Patronimic= tBoxPatronymic.Text;
-             student.DateBirth =dPickBirth.SelectedDate;
-             student.User =cBoxAccaunt.SelectedItem as User;
-             student.Group =cBoxGroup.SelectedItem as Group;
+             student.DateBirth = dPickBirth.SelectedDate;
+             student.User = cBoxAccaunt.SelectedItem as User;
+             student.Group = cBoxGroup.SelectedItem as Group;
 
+            student.PhoneNumber = tBoxPhoneNumber.Text;
+            student.Gender = cBoxGender.SelectedItem as Gender;
 
             if (!edit)
             {

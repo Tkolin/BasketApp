@@ -28,7 +28,10 @@ namespace BasketApp
         public Nullable<System.DateTime> DateBirth { get; set; }
         public Nullable<int> GroupID { get; set; }
         public Nullable<int> UserID { get; set; }
+        public Nullable<int> GenderID { get; set; }
+        public string PhoneNumber { get; set; }
     
+        public virtual Gender Gender { get; set; }
         public virtual Group Group { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Record> Record { get; set; }

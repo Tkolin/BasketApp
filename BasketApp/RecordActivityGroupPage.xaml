@@ -9,7 +9,7 @@
       Title="RecordActivityGroupPage" Loaded="Page_Loaded">
 
     <Grid>
-        <TextBlock Text="Задать мироприятие группе" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10" FontStyle="Italic" />
+        <TextBlock Text="Задать задание группе" HorizontalAlignment="Center" FontSize="30" FontWeight="Bold" Margin="0,0,0,10" FontStyle="Italic" />
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="10" Width="250" VerticalAlignment="Center">
 
             <TextBlock Margin="10,0,0,0">Группа:</TextBlock>

@@ -15,9 +15,9 @@
             <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <Button Margin="0,20,0,0" Width="120" Name="btnCoach" Click="btnCoach_Click" Content="Тренеры"/>
                 <Button Margin="0,20,0,0" Width="120" Name="btnGroup" Click="btnGroup_Click" Content="Группы"/>
-                <Button Margin="0,20,0,0" Width="120" Name="btnRecord" Click="btnRecord_Click" Content="Мироприятия"/>
+                <Button Margin="0,20,0,0" Width="120" Name="btnRecord" Click="btnRecord_Click" Content="Задания"/>
                 <Button Margin="0,20,0,0" Width="120" Name="btnVisit" Click="btnVisit_Click" Content="Успеваемость"/>
-                <Button Margin="0,20,0,0" Width="120" Name="btnStudent" Click="btnStudent_Click" Content="Студенты"/>
+                <Button Margin="0,20,0,0" Width="120" Name="btnStudent" Click="btnStudent_Click" Content="Ученики"/>
                 <Button Margin="0,20,0,0" Width="60" Name="btnBack" Click="btnBack_Click" Content="Выход"/>
             </StackPanel>
         </StackPanel>

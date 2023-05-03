@@ -47,14 +47,21 @@ namespace BasketApp
             cBoxPosition.DisplayMemberPath = "Name";
             cBoxPosition.ItemsSource = BasketBDEntities.GetContext().Position.ToList();
 
+            cBoxGender.DisplayMemberPath = "Name";
+            cBoxGender.SelectedValuePath = "ID";
+            cBoxGender.ItemsSource = BasketBDEntities.GetContext().Gender.ToList();
+
             if (edit)
             {
+
                 tBoxFirstName.Text = coach.FirstName;
                 tBoxLastName.Text = coach.LastName;
                 tBoxPatronymic.Text = coach.Patronimic;
                 tBoxPhoneNumber.Text = coach.PhoneNumber;
                 cBoxPosition.SelectedItem = coach.Position;
-                cBoxAccaunt.SelectedItem = coach.User;           
+                cBoxAccaunt.SelectedItem = coach.User;   
+                
+                cBoxGender.SelectedItem = coach.Gender;
             }
         }
 
@@ -78,7 +85,9 @@ namespace BasketApp
             coach.Position = (Position)cBoxPosition.SelectedItem;
             coach.User = (User)cBoxAccaunt.SelectedItem;
 
-            if(!edit)
+            coach.Gender = cBoxGender.SelectedItem as Gender;
+
+            if (!edit)
             {
                 try
                 {
