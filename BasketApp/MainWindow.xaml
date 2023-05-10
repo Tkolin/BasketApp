@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BasketApp"
         mc:Ignorable="d"
         Title="BasketApp" Height="600" Width="800"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded" ResizeMode="NoResize">
     <Grid>
         <Frame x:Name="MainFrame"/>
     </Grid>

@@ -34,6 +34,9 @@ namespace BasketApp
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             getStudents();
+
+            cBoxGroup.ItemsSource = BasketBDEntities.GetContext().Group.ToList();
+            cBoxGroup.DisplayMemberPath = "Name";
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
@@ -84,6 +87,10 @@ namespace BasketApp
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
         {
+            cBoxGroup.SelectedItem = null;
+            tBoxSearchCoach.Text = "";
+            tBoxSearchStud.Text = "";
+
             getStudents();
         }
         private void cBoxGroup_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,6 +142,7 @@ namespace BasketApp
         {
             dPickDateEnd.SelectedDate = null;
             dPickDateStart.SelectedDate = null;
+
         }
         private void btnOtchetForVisit_Click(object sender, RoutedEventArgs e)
         {

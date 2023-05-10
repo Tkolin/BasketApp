@@ -38,7 +38,6 @@ namespace BasketApp
                 return;
             }
             User users = login();
-            MessageBox.Show(users.Login);
             NavigationService.Navigate(new MainMenyPage(users));
  
         }

@@ -53,6 +53,7 @@ namespace BasketApp
                 try
                 {
                     BasketBDEntities.GetContext().Record.Add(record);
+                
                 }
                 catch (Exception ex)
                 {

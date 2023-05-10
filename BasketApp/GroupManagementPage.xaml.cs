@@ -44,7 +44,6 @@ namespace BasketApp
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            cBoxCoach.DisplayMemberPath = "LastName";
             cBoxCoach.SelectedValuePath = "ID";
             cBoxCoach.ItemsSource = BasketBDEntities.GetContext().Coach.ToList();
 
